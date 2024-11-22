@@ -11,6 +11,7 @@
   <ion-button (click)="takePicture()">Take Picture</ion-button>
   <ion-button (click)="getDeviceInfo()">Get Device Info</ion-button>
   <ion-button (click)="getNetworkStatus()">Get Network Status</ion-button>
+  <ion-button (click)="speakText('Hello, this is a test of the Text to Speech plugin')">Speak Text</ion-button>
   <img *ngIf="capturedImage" [src]="capturedImage" alt="Captured Image">
   <pre *ngIf="deviceInfo">{{ deviceInfo | json }}</pre>
   <pre *ngIf="networkStatus">{{ networkStatus | json }}</pre>

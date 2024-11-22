@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
 import { LocationService } from '../services/location.service';
 import { CameraService } from '../services/camera.service';
 import { DeviceInfoService } from '../services/device-info.service';
 import { NetworkService } from '../services/network.service';
+import { TextToSpeechService } from '../services/text-to-speech.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton, CommonModule],
+  imports: [CommonModule, IonicModule],
 })
 export class HomePage {
   capturedImage: string | undefined;
@@ -22,7 +23,8 @@ export class HomePage {
     private locationService: LocationService,
     private cameraService: CameraService,
     private deviceInfoService: DeviceInfoService,
-    private networkService: NetworkService
+    private networkService: NetworkService,
+    private textToSpeechService: TextToSpeechService
   ) { }
 
   async getLocation() {
@@ -58,6 +60,14 @@ export class HomePage {
       console.log('Network status:', this.networkStatus);
     } catch (error) {
       console.error('Error getting network status', error);
+    }
+  }
+
+  async speakText(text: string) {
+    try {
+      await this.textToSpeechService.speak(text);
+    } catch (error) {
+      console.error('Error with Text to Speech', error);
     }
   }
 }
