@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { LocationService } from '../services/location.service';
 import { CameraService } from '../services/camera.service';
 import { DeviceInfoService } from '../services/device-info.service';
+import { NetworkService } from '../services/network.service';
 
 @Component({
   selector: 'app-home',
@@ -15,11 +16,13 @@ import { DeviceInfoService } from '../services/device-info.service';
 export class HomePage {
   capturedImage: string | undefined;
   deviceInfo: any;
+  networkStatus: any;
 
   constructor(
     private locationService: LocationService,
     private cameraService: CameraService,
-    private deviceInfoService: DeviceInfoService
+    private deviceInfoService: DeviceInfoService,
+    private networkService: NetworkService
   ) { }
 
   async getLocation() {
@@ -46,6 +49,15 @@ export class HomePage {
       console.log('Device info:', this.deviceInfo);
     } catch (error) {
       console.error('Error getting device info', error);
+    }
+  }
+
+  async getNetworkStatus() {
+    try {
+      this.networkStatus = await this.networkService.getNetworkStatus();
+      console.log('Network status:', this.networkStatus);
+    } catch (error) {
+      console.error('Error getting network status', error);
     }
   }
 }
