@@ -8,4 +8,6 @@
 
 <ion-content>
   <ion-button (click)="getLocation()">Get Current Position</ion-button>
+  <ion-button (click)="takePicture()">Take Picture</ion-button>
+  <img *ngIf="capturedImage" [src]="capturedImage" alt="Captured Image">
 </ion-content>
