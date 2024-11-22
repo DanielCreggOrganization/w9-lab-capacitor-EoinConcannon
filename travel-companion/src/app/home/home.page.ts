@@ -25,7 +25,24 @@ export class HomePage {
     private deviceInfoService: DeviceInfoService,
     private networkService: NetworkService,
     private textToSpeechService: TextToSpeechService
-  ) { }
+  ) {
+    // Camera Testing
+    navigator.mediaDevices.addEventListener('devicechange', () => {
+      console.log('Camera devices changed');
+    });
+
+    // Geolocation Testing
+    navigator.geolocation.watchPosition((position) => {
+      console.log('New position:', position);
+    });
+
+    // Device Info Testing
+    console.log({
+      userAgent: navigator.userAgent,
+      platform: navigator.platform,
+      language: navigator.language
+    });
+  }
 
   async getLocation() {
     try {
