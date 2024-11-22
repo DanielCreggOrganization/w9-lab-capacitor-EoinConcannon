@@ -9,5 +9,7 @@
 <ion-content>
   <ion-button (click)="getLocation()">Get Current Position</ion-button>
   <ion-button (click)="takePicture()">Take Picture</ion-button>
+  <ion-button (click)="getDeviceInfo()">Get Device Info</ion-button>
   <img *ngIf="capturedImage" [src]="capturedImage" alt="Captured Image">
+  <pre *ngIf="deviceInfo">{{ deviceInfo | json }}</pre>
 </ion-content>
